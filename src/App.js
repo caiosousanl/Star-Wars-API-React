@@ -9,6 +9,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 function App() {
   const [textInput, setTextInput] = useState("")
   const [dataApi, setDataApi] = useState([]);
+  const [trStyle, setStyle] = useState({visibility: 'hidden'})
 
   const apiGet = async () => {
     const response = await fetch('https://swapi.py4e.com/api/people/?format=json', { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
@@ -25,13 +26,16 @@ function App() {
   }, [])
 
   useEffect(() => {
-    
+
     if (typeof textInput !== null) {
       console.log("textinputmudou: " + textInput)
+      setStyle({visibility: 'hidden'})
 
-      dataApi.map((pessoa)=>{
-        if(pessoa.name.toUpperCase() == textInput.toUpperCase()){
-          console.log("achou")
+      dataApi.map((pessoa) => {
+        if (pessoa.name.toUpperCase() == textInput.toUpperCase()) {
+          setStyle({backgroundColor: 'green'})
+          alert("achou! >>> mostrar o <td> do: "+ pessoa.name)
+          
           //mostra_td_pessoa(x)
 
 
@@ -42,23 +46,23 @@ function App() {
         //   console.log("Achou!: "+pos);
         // }
       })
-      
+
     }
   }, [textInput])
 
   return (
 
-    <div className="App " style={{ backgroundColor: '#999999', width:"100%", height: "100%", flex:1, paddingTop:100, height:"auto" }}>
-      <Container  className="justify-content-md-center"  bg="red" >
+    <div className="App " style={{ backgroundColor: '#999999', width: "100%", height: "100%", flex: 1, paddingTop: 100, height: "auto" }}>
+      <Container className="justify-content-md-center" bg="red" >
         <Row className="text-center">
           <h1 style={{ color: '#FFE81F' }}>Star Wars Guesser</h1>
         </Row>
 
         <Row className="text-center justify-content-md-center">
           <Col >
-          
-            <Input style={{width:1000}} value={textInput} onChange={setTextInput} ></Input>
-            <TableGame data={dataApi}>
+
+            <Input style={{ width: 1000 }} value={textInput} onChange={setTextInput} ></Input>
+            <TableGame  trStyle={trStyle} data={dataApi}>
 
             </TableGame>
 
