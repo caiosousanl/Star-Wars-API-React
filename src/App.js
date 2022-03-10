@@ -5,46 +5,50 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TableGame from './components/Table';
 import { Container, Row, Col } from 'react-bootstrap';
 
-
 function App() {
   const [textInput, setTextInput] = useState("")
   const [dataApi, setDataApi] = useState([]);
-  const [trStyle, setStyle] = useState({visibility: 'hidden'})
+  const [liStyle, setLiStyle] = useState({display: 'none'})
+  const [listPeople, setListPeople] = useState([])
+
 
   const apiGet = async () => {
-    const response = await fetch('https://swapi.py4e.com/api/people/?format=json', { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
-    const jsonData = await response.json();
-    if (dataApi.lenght !== 0) {
-      console.log(jsonData.results);
-      setDataApi(jsonData.results);
-    }
+    const response1 = await fetch('https://swapi.dev/api/people?page=1', { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
+    const response2 = await fetch('https://swapi.dev/api/people?page=2', { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
+    const response3 = await fetch('https://swapi.dev/api/people?page=3', { headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
+
+    const response1json = await response1.json();
+    const response2json = await response2.json();
+    const response3json = await response3.json();
+
+    const result1 = response1json.results;
+    const result2 = response2json.results;
+    const result3 = response3json.results;
+    const result =  result1.concat(result2, result3);
+
+    setDataApi(result);
+  }
+
+  function showLiPerson(person) {
+    
   }
 
   useEffect(() => {
     apiGet();
-    console.log(dataApi)
+
   }, [])
 
   useEffect(() => {
 
     if (typeof textInput !== null) {
-      console.log("textinputmudou: " + textInput)
-      setStyle({visibility: 'hidden'})
 
-      dataApi.map((pessoa) => {
+      dataApi.map((pessoa, index) => {
         if (pessoa.name.toUpperCase() == textInput.toUpperCase()) {
-          setStyle({backgroundColor: 'green'})
-          alert("achou! >>> mostrar o <td> do: "+ pessoa.name)
-          
-          //mostra_td_pessoa(x)
-
-
+          setListPeople([...listPeople, index])
+          setTextInput('')
         }
 
-        // if( pessoa.name.includes(String(textInput))){
-        //   let pos = pessoa.name.includes(String(textInput))
-        //   console.log("Achou!: "+pos);
-        // }
+
       })
 
     }
@@ -52,7 +56,7 @@ function App() {
 
   return (
 
-    <div className="App " style={{ backgroundColor: '#999999', width: "100%", height: "100%", flex: 1, paddingTop: 100, height: "auto" }}>
+    <div className="App " style={{ backgroundColor: '#999999', width: "100%", height: "100%",  paddingTop: 100 }}>
       <Container className="justify-content-md-center" bg="red" >
         <Row className="text-center">
           <h1 style={{ color: '#FFE81F' }}>Star Wars Guesser</h1>
@@ -60,9 +64,8 @@ function App() {
 
         <Row className="text-center justify-content-md-center">
           <Col >
-
             <Input style={{ width: 1000 }} value={textInput} onChange={setTextInput} ></Input>
-            <TableGame  trStyle={trStyle} data={dataApi}>
+            <TableGame listPeople={listPeople} data={dataApi}>
 
             </TableGame>
 

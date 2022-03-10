@@ -1,0 +1,15 @@
+ul {
+    columns: 5;
+    padding: 5px;
+    margin-top: 25px;
+
+  }
+  
+li {
+    padding: 5px;
+    margin: 5px;
+    background-color:rgba(124, 124, 124, 0.281);
+    color: transparent;
+    text-indent: -9999px;
+  }
+
