@@ -5,10 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TableGame from './components/Table';
 import { Container, Row, Col } from 'react-bootstrap';
 
+
 function App() {
   const [textInput, setTextInput] = useState("")
   const [dataApi, setDataApi] = useState([]);
-  const [liStyle, setLiStyle] = useState({display: 'none'})
+  const [liStyle, setLiStyle] = useState({ display: 'none' })
   const [listPeople, setListPeople] = useState([])
 
 
@@ -24,13 +25,13 @@ function App() {
     const result1 = response1json.results;
     const result2 = response2json.results;
     const result3 = response3json.results;
-    const result =  result1.concat(result2, result3);
+    const result = result1.concat(result2, result3);
 
     setDataApi(result);
   }
 
   function showLiPerson(person) {
-    
+
   }
 
   useEffect(() => {
@@ -48,27 +49,23 @@ function App() {
           setTextInput('')
         }
 
-
       })
 
     }
   }, [textInput])
 
   return (
-
-    <div className="App " style={{ backgroundColor: '#999999', width: "100%", height: "100%",  paddingTop: 100 }}>
-      <Container className="justify-content-md-center" bg="red" >
+    <div className="App justify-content-md-center  container-fluid m-16 " >
+      <Container className="bg-dark"  >
         <Row className="text-center">
-          <h1 style={{ color: '#FFE81F' }}>Star Wars Guesser</h1>
+          <h1 className='titlesw' style={{ color: '#FFE81F' }}>Star Wars Guesser</h1>
         </Row>
-
         <Row className="text-center justify-content-md-center">
           <Col >
-            <Input style={{ width: 1000 }} value={textInput} onChange={setTextInput} ></Input>
+            <Input className="" style={{ width: 1000 }} value={textInput} onChange={setTextInput} ></Input>
             <TableGame listPeople={listPeople} data={dataApi}>
 
             </TableGame>
-
           </Col>
         </Row>
 

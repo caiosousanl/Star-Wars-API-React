@@ -31,6 +31,14 @@
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
 */
+@font-face {
+  font-family: sw-font;
+  src: url('../public/starjedi/Starjedi.ttf');
+}
+
+.titlesw {
+  font-family: sw-font;
+}
 
 html {
   line-height: 1.5;
@@ -54,6 +62,7 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
+  background-image: url("https://www.spacex.com/static/images/backgrounds/rideshare_feature.webp")
 }
 
 /*
