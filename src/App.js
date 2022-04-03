@@ -55,14 +55,14 @@ function App() {
   }, [textInput])
 
   return (
-    <div className="App justify-content-md-center  container-fluid m-16 " >
-      <Container className="bg-dark"  >
+    <div className="App justify-content-md-center container-fluid m-16 " >
+      <Container className="bg-dark">
         <Row className="text-center">
           <h1 className='titlesw' style={{ color: '#FFE81F' }}>Star Wars Guesser</h1>
         </Row>
         <Row className="text-center justify-content-md-center">
           <Col >
-            <Input className="" style={{ width: 1000 }} value={textInput} onChange={setTextInput} ></Input>
+            <Input style={{ width: 1000 }} value={textInput} onChange={setTextInput} ></Input>
             <TableGame listPeople={listPeople} data={dataApi}>
 
             </TableGame>

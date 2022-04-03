@@ -16,7 +16,7 @@ export default function TableGame({ data, listPeople }) {
                 
                 {dataApi.map((item, index) => {
                     if(listPeople.includes(index)){
-                        return <li key={index} style={liStyle} >{item.name}</li>
+                        return <li className='list-none' key={index} style={liStyle} >{item.name}</li>
                     }
                     return <li>{item.name}</li>
                 })}

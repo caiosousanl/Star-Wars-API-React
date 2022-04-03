@@ -7,6 +7,6 @@ export default function Input({value, onChange}){
     }
 
     return(
-        <input className="focus:border-indigo-500   pl-7 pr-12 sm:text-sm  rounded-md rounded-full outline-none"  value={value} onChange={handleChange}/>
+        <input className="focus:border-indigo-500 pl-7 pr-12 sm:text-sm  rounded-md rounded-full outline-none"  value={value} onChange={handleChange}/>
     )
 }
